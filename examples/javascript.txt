@@ -1,0 +1,14 @@
+function authentication() {
+  const axios = require("axios");
+  const product = 2
+  axios
+    .get("http://localhost:1000/api/auth/${product}")
+    .then((response) => {
+      if (response.data.authorized === true) {
+        console.log("Authorized Successfully")
+      } else if (response.data.authorized === false) {
+        console.log("You dont have a License!")
+        process.exit()
+      }
+    })
+}

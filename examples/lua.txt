@@ -1,0 +1,18 @@
+function authentication()
+  local response, status = http.request("http://localhost:1000/api/auth/2")
+
+  if status == 200 then
+    local data = loadstring("return " .. response)()
+    if data.authorized then
+      print("Authorized Successfully")
+    else
+      print("You don't have a License!")
+      os.exit()
+    end
+  else
+    print("Error in HTTP request:", status)
+    os.exit()
+  end
+end
+
+authentication()
